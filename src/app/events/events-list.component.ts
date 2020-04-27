@@ -8,6 +8,22 @@ import { Component } from '@angular/core';
 
 export class EventsListComponent{
     events = EVENTS;
+    event: any;
+    viewParticipants = false;
+
+    viewDetails(data) {
+        // console.log(data);
+        this.events.map(event => {
+            if (event.id === data){
+                this.event = event;
+            }
+        });
+        this.viewParticipants = true;
+    }
+
+    returnToList() {
+        this.viewParticipants = false;
+    }
 }
 
 export const EVENTS = [
@@ -26,7 +42,23 @@ export const EVENTS = [
         room: ''
       },
       onlineUrl: '',
-      participants: [],
+      participants: [
+          {
+              fullName: 'Jun Rey Ansing',
+              position: 'Innovative Technology Trainer',
+              company: 'Passerelles numeriques'
+          },
+          {
+            fullName: 'Rene Abdallah',
+            position: 'IT/Training Manager',
+            company: 'Passerelles numeriques'
+        },
+        {
+            fullName: 'Marine Le Mezo',
+            position: 'IT Trainer/Volunteer',
+            company: 'Passerelles numeriques'
+        },
+  ],
       description: 'This is all about opportunities with Angular '
     },
     {
@@ -44,8 +76,24 @@ export const EVENTS = [
         room: ''
       },
       onlineUrl: '',
-      participants: [],
-      description: 'This was a despideda for Ms. Jade Chua, PNP General Manager'
+      participants: [
+        {
+            fullName: 'Marice Jade Chua',
+            position: 'General Manager',
+            company: 'Passerelles numeriques'
+        },
+        {
+          fullName: 'Rene Abdallah',
+          position: 'IT/Training Manager',
+          company: 'Passerelles numeriques'
+      },
+      {
+          fullName: 'Marine Le Mezo',
+          position: 'IT Trainer/Volunteer',
+          company: 'Passerelles numeriques'
+      },
+    ],
+    description: 'This was a despideda for Ms. Jade Chua, PNP-GM'
     },
     {
       id: 2,
@@ -62,7 +110,23 @@ export const EVENTS = [
         room: 'Audio-Visual Room'
       },
       onlineUrl: '',
-      participants: [],
+      participants: [
+        {
+            fullName: 'Marie Maureen Salvaleon',
+            position: 'Academic Officer',
+            company: 'Passerelles numeriques'
+        },
+        {
+          fullName: 'Kristoff Peralta',
+          position: 'Communicatons Officer',
+          company: 'Passerelles numeriques'
+      },
+      {
+          fullName: 'Kristine Roxa',
+          position: '3rd Year Educator',
+          company: 'Passerelles numeriques'
+      },
+    ],
       description: 'OJT-Hunting for Class 2020B'
     },
     {
@@ -80,7 +144,23 @@ export const EVENTS = [
         room: 'Computer Lab'
       },
       onlineUrl: 'https://www.aws.com',
-      participants: [],
+      participants: [
+        {
+            fullName: 'Jun Rey Ansing',
+            position: 'Innovative Technology Trainer',
+            company: 'Passerelles numeriques'
+        },
+        {
+          fullName: 'Rene Abdallah',
+          position: 'IT/Training Manager',
+          company: 'Passerelles numeriques'
+      },
+      {
+          fullName: 'Luke Rafael Alcoseba',
+          position: 'IT Admin',
+          company: 'Passerelles numeriques'
+      },
+    ],
       description: 'Online class for Amazon Web Services'
     },
 ];

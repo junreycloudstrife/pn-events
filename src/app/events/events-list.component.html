@@ -1,32 +1,16 @@
-<h2 class="pb-3">List of PN Events</h2>
-<div>
-    <div *ngFor="let event of events">
-      <div class="jumbotron">
-        <h2>{{event.name}}</h2>
-        <div class="col body-content">
-          <div class="row">
-            <span><b>Category: </b>{{event.category}}</span>
-          </div>
-          <div class="row" *ngIf="event.speaker">
-            <span><b>Speaker: </b>{{event.speaker}}</span>
-          </div>
-          <div class="row" *ngIf="event.emcee">
-            <span><b>Emcee: </b>{{event.emcee}}</span>
-          </div>
-          <div class="row">
-            <span><b>Time: </b>{{event.time}}</span>
-          </div>
-          <div class="row">
-            <span><b>Date: </b>{{event.date}}</span>
-          </div>
-          <div class="row">
-            <span><b>Description:</b></span>      
-          </div>
-          <p>
-            {{event.description}}
-          </p>
-          </div>  
-      </div>  
-    </div>
-  </div>
-  
+<div *ngIf="!viewParticipants">
+    <h2 class="pb-3">List of PN Events</h2>
+    <div>
+        <div *ngFor="let event of events">
+            <app-event-details [eventInput]="event" (eventOutput)="viewDetails($event)"></app-event-details>
+        </div>
+    </div>    
+</div>
+    
+<div *ngIf="viewParticipants">
+    <h2 class="pb-3" style="text-align: center;">{{event.name}}</h2>
+    <app-participants-list 
+        [participants]="event.participants"
+        (backButton)="returnToList()"
+        ></app-participants-list>
+</div>
