@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { EventsListComponent } from './events/events-list.component';
@@ -14,7 +15,9 @@ import { ParticipantsListComponent } from './participants/participants-list/part
     ParticipantsListComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

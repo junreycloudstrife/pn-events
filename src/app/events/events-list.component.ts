@@ -12,7 +12,6 @@ export class EventsListComponent{
     viewParticipants = false;
 
     viewDetails(data) {
-        // console.log(data);
         this.events.map(event => {
             if (event.id === data){
                 this.event = event;
@@ -23,6 +22,14 @@ export class EventsListComponent{
 
     returnToList() {
         this.viewParticipants = false;
+    }
+
+    addParticipant(data) {
+        this.events.map(event => {
+            if (event.id === this.event.id) {
+                event.participants.push(data);
+            }
+        });
     }
 }
 
@@ -151,13 +158,13 @@ export const EVENTS = [
             company: 'Passerelles numeriques'
         },
         {
-          fullName: 'Rene Abdallah',
-          position: 'IT/Training Manager',
-          company: 'Passerelles numeriques'
-      },
-      {
-          fullName: 'Luke Rafael Alcoseba',
-          position: 'IT Admin',
+            fullName: 'Luke Rafael Alcoseba',
+            position: 'IT Admin',
+            company: 'Passerelles numeriques'
+        },
+          {
+          fullName: 'Marine Le Mezo',
+          position: 'IT Trainer/Volunteer',
           company: 'Passerelles numeriques'
       },
     ],

@@ -12,5 +12,6 @@
     <app-participants-list 
         [participants]="event.participants"
         (backButton)="returnToList()"
+        (addParticipant)="addParticipant($event)"
         ></app-participants-list>
 </div>
