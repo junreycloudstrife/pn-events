@@ -1,19 +1,19 @@
 export interface Event {
-    id?: number;
+    id: number;
     name: string;
     category: string;
-    speaker: string;
-    emcee: string;
+    speaker?: string;
+    emcee?: string;
     time: string;
-    date: Date;
+    date: string;
     duration: number;
-    venue: {
-        address: string;
-        building: string;
-        room: string;
+    venue?: {
+        address?: string;
+        building?: string;
+        room?: string;
     };
-    onlineUrl: string;
-    participant: Participant;
+    onlineUrl?: string;
+    participants: Participant[];
     description: string;
 }
 
