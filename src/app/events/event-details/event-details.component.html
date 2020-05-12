@@ -1,1 +1,26 @@
-<p>event-details works!</p>
+<div class="jumbotron">
+    <h2>{{eventInput.name}}</h2>
+    <div class="col body-content">
+        <div class="row">
+            <span><b>Category: </b>{{eventInput.category}}</span>
+        </div>
+        <div class="row" *ngIf="eventInput.speaker">
+            <span><b>Speaker: </b>{{eventInput.speaker}}</span>
+        </div>
+        <div class="row" *ngIf="eventInput.emcee">
+            <span><b>Emcee: </b>{{eventInput.emcee}}</span>
+        </div>
+        <div class="row">
+            <span><b>Time: </b>{{eventInput.time}}</span>
+        </div>
+        <div class="row">
+            <span><b>Date: </b>{{eventInput.date}}</span>
+        </div>
+        <div class="row">
+            <span><b>Description:</b></span>      
+        </div>
+        <p>
+            {{eventInput.description}}
+        </p>
+    </div>  
+</div>  
