@@ -1,17 +1,3 @@
-<div *ngIf="!viewParticipants">
-    <h2 class="pb-3">List of PN Events</h2>
-    <div>
-        <div *ngFor="let event of events">
-            <app-event-details [eventInput]="event" (eventOutput)="viewDetails($event)"></app-event-details>
-        </div>
-    </div>    
-</div>
-    
-<div *ngIf="viewParticipants">
-    <h2 class="pb-3" style="text-align: center;">{{event.name}}</h2>
-    <app-participants-list 
-        [participants]="event.participants"
-        (backButton)="returnToList()"
-        (addParticipant)="addParticipant($event)"
-        ></app-participants-list>
-</div>
+<h1>This is EventsListComponent</h1>
+<p class="body-content">This is the EventListComponent that implements an inline template</p>
+<p class="body-content">An inline styling also implemented now</p>

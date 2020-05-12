@@ -127,6 +127,6 @@
   },
   "defaultProject": "pn-events",
   "cli": {
-    "analytics": "09291346-758b-467f-8013-1486a5d800b1"
+    "analytics": false
   }
 }
