@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-participants-list',
@@ -7,9 +7,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ParticipantsListComponent implements OnInit {
 
+  @Input() participants: any;
+  @Output() backButton = new EventEmitter();
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  returnToList() {
+    this.backButton.emit();
+  }
 }

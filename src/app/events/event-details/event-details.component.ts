@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-event-details',
@@ -8,9 +8,13 @@ import { Component, OnInit, Input } from '@angular/core';
 export class EventDetailsComponent implements OnInit {
 
   @Input() eventInput: any;
+  @Output() eventOutput = new EventEmitter();
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  viewDetails(data) {
+    this.eventOutput.emit(data);
+  }
 }

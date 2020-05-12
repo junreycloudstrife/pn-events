@@ -8,6 +8,21 @@ import { Component } from '@angular/core';
 
 export class EventsListComponent{
     events = EVENTS;
+    event: any;
+    viewParticipants = false;
+
+    viewDetails(data) {
+      this.events.map(event => {
+        if (event.id === data) {
+          this.event = event;
+        }
+      });
+      this.viewParticipants = true;
+    }
+
+    returnToList() {
+      this.viewParticipants = false;
+    }
 }
 
 export const EVENTS = [

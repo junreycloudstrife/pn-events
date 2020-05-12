@@ -1,4 +1,4 @@
-<div class="jumbotron">
+<div class="jumbotron pointable">
     <h2>{{eventInput.name}}</h2>
     <div class="col body-content">
         <div class="row">
@@ -17,10 +17,8 @@
             <span><b>Date: </b>{{eventInput.date}}</span>
         </div>
         <div class="row">
-            <span><b>Description:</b></span>      
+            <span><b>Description: </b>{{eventInput.description}}</span>      
         </div>
-        <p>
-            {{eventInput.description}}
-        </p>
+        <button class="btn btn-primary mt-5" type="submit" (click)="viewDetails(eventInput.id)">View Participants</button>
     </div>  
 </div>  
