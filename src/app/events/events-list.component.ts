@@ -7,29 +7,35 @@ import { Component } from '@angular/core';
 })
 
 export class EventsListComponent{
-    events = EVENTS;
-    event: any;
-    viewParticipants = false;
+  events = EVENTS;
+  event: any;
+  viewParticipants = false;
+  newEvent: any;
 
-    viewDetails(data) {
-      this.events.map(event => {
-        if (event.id === data) {
-          this.event = event;
+  viewDetails(data) {
+    this.events.map(event => {
+      if (event.id === data) {
+        this.event = event;
+      }
+    });
+    this.viewParticipants = true;
+  }
+
+  returnToList() {
+    this.viewParticipants = false;
+  }
+
+  addParticipant(data) {
+    this.events.map(event => {
+        if (event.id === this.event.id) {
+            event.participants.push(data);
         }
-      });
-      this.viewParticipants = true;
-    }
+    });
+  }
 
-    returnToList() {
-      this.viewParticipants = false;
-    }
-
-    addParticipant(data) {
-      this.events.map(event => {
-          if (event.id === this.event.id) {
-              event.participants.push(data);
-          }
-      });
+  addEvent(event: any) {
+    event.id = this.events.length;
+    this.events.push(event);
   }
 
 }
