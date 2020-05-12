@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Event, Participant } from '../data-models';
 
 @Component({
     selector: 'app-events-list',
@@ -8,11 +9,11 @@ import { Component } from '@angular/core';
 
 export class EventsListComponent{
   events = EVENTS;
-  event: any;
+  event: Event;
   viewParticipants = false;
-  newEvent: any;
+  newEvent: Event;
 
-  viewDetails(data) {
+  viewDetails(data: number) {
     this.events.map(event => {
       if (event.id === data) {
         this.event = event;
@@ -25,7 +26,7 @@ export class EventsListComponent{
     this.viewParticipants = false;
   }
 
-  addParticipant(data) {
+  addParticipant(data: Participant) {
     this.events.map(event => {
         if (event.id === this.event.id) {
             event.participants.push(data);
@@ -33,14 +34,14 @@ export class EventsListComponent{
     });
   }
 
-  addEvent(event: any) {
+  addEvent(event: Event) {
     event.id = this.events.length;
     this.events.push(event);
   }
 
 }
 
-export const EVENTS = [
+export const EVENTS: Event[] = [
     {
       id: 0,
       name: 'Be Angularized',

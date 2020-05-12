@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Participant } from '../../data-models';
 
 @Component({
   selector: 'app-participants-list',
@@ -10,9 +11,9 @@ export class ParticipantsListComponent implements OnInit {
   position;
   company;
 
-  @Input() participants: any;
+  @Input() participants: Participant[];
   @Output() backButton = new EventEmitter();
-  @Output() addParticipant = new EventEmitter();
+  @Output() addParticipant = new EventEmitter<Participant>();
   constructor() { }
 
   ngOnInit(): void {
@@ -22,8 +23,8 @@ export class ParticipantsListComponent implements OnInit {
     this.backButton.emit();
   }
 
-  register(data) {
-    this.addParticipant.emit(data);
+  register(participant: Participant) {
+    this.addParticipant.emit(participant);
     this.fullName = '';
     this.position = '';
     this.company = '';
