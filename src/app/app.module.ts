@@ -4,12 +4,14 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { EventsListComponent } from './events/events-list.component';
 import { EventDetailsComponent } from './events/event-details/event-details.component';
+import { ParticipantsListComponent } from './participants/participants-list/participants-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     EventsListComponent,
-    EventDetailsComponent
+    EventDetailsComponent,
+    ParticipantsListComponent
   ],
   imports: [
     BrowserModule
