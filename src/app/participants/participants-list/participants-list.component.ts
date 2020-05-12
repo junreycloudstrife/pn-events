@@ -6,9 +6,13 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./participants-list.component.css']
 })
 export class ParticipantsListComponent implements OnInit {
+  fullName;
+  position;
+  company;
 
   @Input() participants: any;
   @Output() backButton = new EventEmitter();
+  @Output() addParticipant = new EventEmitter();
   constructor() { }
 
   ngOnInit(): void {
@@ -16,5 +20,12 @@ export class ParticipantsListComponent implements OnInit {
 
   returnToList() {
     this.backButton.emit();
+  }
+
+  register(data) {
+    this.addParticipant.emit(data);
+    this.fullName = '';
+    this.position = '';
+    this.company = '';
   }
 }
