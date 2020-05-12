@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Event } from '../../data-models';
 
 @Component({
   selector: 'app-event-details',
@@ -7,14 +8,14 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 })
 export class EventDetailsComponent implements OnInit {
 
-  @Input() eventInput: any;
-  @Output() eventOutput = new EventEmitter();
+  @Input() eventInput: Event;
+  @Output() eventOutput = new EventEmitter<number>();
   constructor() { }
 
   ngOnInit(): void {
   }
 
-  viewDetails(data) {
+  viewDetails(data: number) {
     this.eventOutput.emit(data);
   }
 }

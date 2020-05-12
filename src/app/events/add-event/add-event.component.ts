@@ -1,5 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
+import { Event } from '../../data-models';
 
 @Component({
   selector: 'app-add-event',
@@ -8,7 +9,7 @@ import { FormGroup, FormControl } from '@angular/forms';
 })
 export class AddEventComponent implements OnInit {
   eventForm: FormGroup;
-  @Output() event = new EventEmitter();
+  @Output() event = new EventEmitter<Event>();
 
   constructor() { }
 
@@ -32,7 +33,7 @@ export class AddEventComponent implements OnInit {
     });
   }
 
-  addEvent(eventForm: any) {
+  addEvent(eventForm: Event) {
     this.event.emit(eventForm);
   }
 }
