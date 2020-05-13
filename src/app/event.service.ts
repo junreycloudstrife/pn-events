@@ -12,7 +12,7 @@ export class EventService {
     events: Observable<Event[]>;
 
     constructor(private afs: AngularFirestore) {
-        this.eventsCollection = afs.collection<Event>('events');
+        this.eventsCollection = afs.collection<Event>('events', ref => ref.orderBy('id', 'asc'));
         this.events = this.eventsCollection.snapshotChanges().pipe(
             map(actions => actions.map(a => {
                 const data = a.payload.doc.data() as Event;
