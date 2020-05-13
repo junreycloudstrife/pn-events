@@ -6,14 +6,14 @@ import { map } from 'rxjs/operators';
 
 @Injectable()
 export class EventService {
-    events = EVENTS;
+    // events = EVENTS;
     event: Event;
     private eventsCollection: AngularFirestoreCollection<Event>;
-    fEvents: Observable<Event[]>;
+    events: Observable<Event[]>;
 
     constructor(private afs: AngularFirestore) {
         this.eventsCollection = afs.collection<Event>('events');
-        this.fEvents = this.eventsCollection.snapshotChanges().pipe(
+        this.events = this.eventsCollection.snapshotChanges().pipe(
             map(actions => actions.map(a => {
                 const data = a.payload.doc.data() as Event;
                 const id = a.payload.doc.id;
@@ -22,40 +22,36 @@ export class EventService {
         );
     }
 
-    addFEvent(event: Event) {
-        this.eventsCollection.add(event);
-    }
-
     getEvents() {
         return this.events;
     }
 
+    addEvent(event: Event) {
+        // event.id = this.events.length;
+        this.eventsCollection.add(event);
+    }
+
     viewDetails(data: number): Event {
-        this.events.map(event => {
-            if (event.id === data) {
-                this.event = event;
-            }
-        });
+        // this.events.map(event => {
+        //     if (event.id === data) {
+        //         this.event = event;
+        //     }
+        // });
         return this.event;
     }
 
     addParticipants(participant: Participant) {
-        this.events.map(event => {
-            if (event.id === this.event.id) {
-                event.participants.push(participant);
-            }
-        });
+        // this.events.map(event => {
+        //     if (event.id === this.event.id) {
+        //         event.participants.push(participant);
+        //     }
+        // });
     }
 
-    addEvent(event: Event) {
-        // add the events to database after submit of Add New Event form is clicked
-        this.events.forEach(evnt => {
-            console.log(evnt);
-            this.addFEvent(evnt);
-        });
-        // event.id = this.events.length;
-        // this.events.push(event);
-    }
+    // addEvent(event: Event) {
+    //     event.id = this.events.length;
+    //     this.events.push(event);
+    // }
 }
 
 export const EVENTS: Event[] = [
