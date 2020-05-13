@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "pn-events": {
+      "hosting": {
+        "pn-events": [
+          "pn-events"
+        ]
+      }
+    }
+  }
+}

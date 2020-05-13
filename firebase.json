@@ -1,0 +1,19 @@
+{
+  "hosting": [
+    {
+      "target": "pn-events",
+      "public": "dist/pn-events",
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**"
+      ],
+      "rewrites": [
+        {
+          "source": "**",
+          "destination": "/index.html"
+        }
+      ]
+    }
+  ]
+}
