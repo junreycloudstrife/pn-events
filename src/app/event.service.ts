@@ -27,8 +27,11 @@ export class EventService {
     }
 
     addEvent(event: Event) {
-        // event.id = this.events.length;
-        this.eventsCollection.add(event);
+        this.eventsCollection.ref.get().then(querySnapshot => {
+            console.log(querySnapshot.size);
+            event.id = querySnapshot.size;
+            this.eventsCollection.add(event);
+        });
     }
 
     viewDetails(data: number): Event {
