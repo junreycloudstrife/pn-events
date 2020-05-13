@@ -1,10 +1,30 @@
 import { Injectable } from '@angular/core';
 import { Event, Participant } from './data-models';
+import { AngularFirestoreCollection, AngularFirestore } from '@angular/fire/firestore';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Injectable()
 export class EventService {
     events = EVENTS;
     event: Event;
+    private eventsCollection: AngularFirestoreCollection<Event>;
+    fEvents: Observable<Event[]>;
+
+    constructor(private afs: AngularFirestore) {
+        this.eventsCollection = afs.collection<Event>('events');
+        this.fEvents = this.eventsCollection.snapshotChanges().pipe(
+            map(actions => actions.map(a => {
+                const data = a.payload.doc.data() as Event;
+                const id = a.payload.doc.id;
+                return { id, ...data};
+            }))
+        );
+    }
+
+    addFEvent(event: Event) {
+        this.eventsCollection.add(event);
+    }
 
     getEvents() {
         return this.events;
@@ -28,8 +48,13 @@ export class EventService {
     }
 
     addEvent(event: Event) {
-        event.id = this.events.length;
-        this.events.push(event);
+        // add the events to database after submit of Add New Event form is clicked
+        this.events.forEach(evnt => {
+            console.log(evnt);
+            this.addFEvent(evnt);
+        });
+        // event.id = this.events.length;
+        // this.events.push(event);
     }
 }
 
