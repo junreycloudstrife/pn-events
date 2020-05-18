@@ -44,7 +44,13 @@ export class EventsListComponent implements OnInit, OnDestroy{
   }
 
   addParticipant(participant: Participant) {
-    this.eventService.addParticipants(participant);
+    this.events.map(event => {
+      if (event.id === this.event.id) {
+        console.log(event);
+        event.participants.push(participant);
+        this.eventService.updateEvent(event);
+      }
+    });
   }
 
   addEvent(event: Event) {

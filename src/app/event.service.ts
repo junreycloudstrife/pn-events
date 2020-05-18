@@ -1,15 +1,17 @@
 import { Injectable } from '@angular/core';
 import { Event, Participant } from './data-models';
-import { AngularFirestoreCollection, AngularFirestore } from '@angular/fire/firestore';
+import { AngularFirestoreCollection, AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 @Injectable()
 export class EventService {
     // events = EVENTS;
-    event: Event;
+    // event: Event;
     private eventsCollection: AngularFirestoreCollection<Event>;
+    private eventDoc: AngularFirestoreDocument<Event>;
     events: Observable<Event[]>;
+    event: Observable<Event>;
 
     constructor(private afs: AngularFirestore) {
         this.eventsCollection = afs.collection<Event>('events', ref => ref.orderBy('id', 'asc'));
@@ -34,18 +36,17 @@ export class EventService {
         });
     }
 
-    addParticipants(participant: Participant) {
-        // this.events.map(event => {
-        //     if (event.id === this.event.id) {
-        //         event.participants.push(participant);
-        //     }
-        // });
+    updateEvent(event: Event) {
+      this.eventsCollection.ref.where('id', '==', event.id)
+        .get().then(querySnapshot => {
+          querySnapshot.forEach(doc => {
+            // console.log(doc.id);
+            this.eventDoc = this.afs.doc<Event>('events/' + doc.id);
+            this.event = this.eventDoc.valueChanges();
+            this.eventDoc.update(event);
+          });
+        });
     }
-
-    // addEvent(event: Event) {
-    //     event.id = this.events.length;
-    //     this.events.push(event);
-    // }
 }
 
 export const EVENTS: Event[] = [
