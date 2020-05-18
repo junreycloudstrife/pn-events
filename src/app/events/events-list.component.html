@@ -9,7 +9,10 @@
     </div>
     <div>
         <div *ngFor="let event of events">
-            <app-event-details [eventInput]="event" (eventOutput)="viewDetails($event)"></app-event-details>
+            <app-event-details
+                [eventInput]="event"
+                (eventOutput)="viewDetails($event)"
+            ></app-event-details>
         </div>
     </div>    
 </div>
@@ -20,5 +23,5 @@
         [participants]="event?.participants"
         (backButton)="returnToList()"
         (addParticipant)="addParticipant($event)"
-        ></app-participants-list>
+    ></app-participants-list>
 </div>

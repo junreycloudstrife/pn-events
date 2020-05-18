@@ -4,9 +4,9 @@ import { EventService } from '../event.service';
 import { Subscription } from 'rxjs';
 
 @Component({
-    selector: 'app-events-list',
-    templateUrl: './events-list.component.html',
-    styles: ['.body-content{ font-size: 25px;}']
+  selector: 'app-events-list',
+  templateUrl: './events-list.component.html',
+  styles: ['.body-content{ font-size: 25px;}']
 })
 
 export class EventsListComponent implements OnInit, OnDestroy{
