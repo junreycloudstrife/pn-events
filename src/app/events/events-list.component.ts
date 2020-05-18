@@ -31,7 +31,11 @@ export class EventsListComponent implements OnInit, OnDestroy{
   }
 
   viewDetails(data: number) {
-    this.event = this.eventService.viewDetails(data);
+    this.events.map(event => {
+      if (event.id === data) {
+        this.event = event;
+       }
+    });
     this.viewParticipants = true;
   }
 

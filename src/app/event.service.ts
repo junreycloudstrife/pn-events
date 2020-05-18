@@ -34,15 +34,6 @@ export class EventService {
         });
     }
 
-    viewDetails(data: number): Event {
-        // this.events.map(event => {
-        //     if (event.id === data) {
-        //         this.event = event;
-        //     }
-        // });
-        return this.event;
-    }
-
     addParticipants(participant: Participant) {
         // this.events.map(event => {
         //     if (event.id === this.event.id) {
