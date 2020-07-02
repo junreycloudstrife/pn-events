@@ -12,6 +12,7 @@ import { ParticipantsListComponent } from './participants/participants-list/part
 import { AddEventComponent } from './events/add-event/add-event.component';
 import { EventService } from './event.service';
 import { LoginComponent } from './login/login.component';
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { LoginComponent } from './login/login.component';
     FormsModule,
     ReactiveFormsModule,
     AngularFireModule.initializeApp(environment.firebaseConfig, 'pn-events'),
-    AngularFirestoreModule
+    AngularFirestoreModule,
+    AppRoutingModule
   ],
   providers: [
     EventService
