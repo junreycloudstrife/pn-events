@@ -1,7 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Event, Participant } from '../data-models';
+import { Event, Participant, UserAccount } from '../data-models';
 import { EventService } from '../event.service';
 import { Subscription } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-events-list',
@@ -16,7 +17,13 @@ export class EventsListComponent implements OnInit, OnDestroy{
   newEvent: Event;
   getEventsSubscription: Subscription;
 
-  constructor(private eventService: EventService) {}
+  currentUser: UserAccount;
+  getCurrentUserSubscription: Subscription;
+
+  constructor(
+    private eventService: EventService,
+    private router: Router
+    ) {}
 
   ngOnInit() {
     this.getEventsSubscription = this.eventService.getEvents()
@@ -24,10 +31,16 @@ export class EventsListComponent implements OnInit, OnDestroy{
         this.events = events;
         console.log(this.events);
       });
+
+    this.getCurrentUserSubscription = this.eventService.currentUserAccount
+      .subscribe(currentUser => {
+        console.log(currentUser);
+      })
   }
 
   ngOnDestroy() {
     this.getEventsSubscription.unsubscribe();
+    this.getCurrentUserSubscription.unsubscribe();
   }
 
   viewDetails(data: number) {
@@ -55,5 +68,13 @@ export class EventsListComponent implements OnInit, OnDestroy{
 
   addEvent(event: Event) {
     this.eventService.addEvent(event);
+  }
+
+  logout() {
+    this.eventService.updateCurrentUser({
+      userName: '',
+      password: ''
+    });
+    this.router.navigate(['/login']);
   }
 }
