@@ -7,7 +7,7 @@ import { EventsListComponent } from './events/events-list.component';
 const routes: Routes = [
   { path: 'login', component: LoginComponent, pathMatch: 'full' },
   { path: 'events', component: EventsListComponent, pathMatch: 'full'},
-  { path: '', redirectTo: '/login', pathMatch: 'full' }
+  { path: '', redirectTo: '/login', pathMatch: 'prefix' }
 ];
 
 @NgModule({
