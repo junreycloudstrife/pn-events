@@ -2,11 +2,12 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { EventsListComponent } from './events/events-list.component';
+import { EventsRouteActivator } from './events/events-route-activator.service';
 
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent, pathMatch: 'full' },
-  { path: 'events', component: EventsListComponent, pathMatch: 'full'},
+  { path: 'events', component: EventsListComponent, canActivate: [EventsRouteActivator] },
   { path: '', redirectTo: '/login', pathMatch: 'prefix' }
 ];
 

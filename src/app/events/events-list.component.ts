@@ -17,8 +17,8 @@ export class EventsListComponent implements OnInit, OnDestroy{
   newEvent: Event;
   getEventsSubscription: Subscription;
 
-  currentUser: UserAccount;
-  getCurrentUserSubscription: Subscription;
+  // currentUser: UserAccount;
+  // getCurrentUserSubscription: Subscription;
 
   constructor(
     private eventService: EventService,
@@ -32,15 +32,15 @@ export class EventsListComponent implements OnInit, OnDestroy{
         console.log(this.events);
       });
 
-    this.getCurrentUserSubscription = this.eventService.currentUserAccount
-      .subscribe(currentUser => {
-        console.log(currentUser);
-      })
+    // this.getCurrentUserSubscription = this.eventService.currentUserAccount
+    //   .subscribe(currentUser => {
+    //     console.log(currentUser);
+    //   })
   }
 
   ngOnDestroy() {
     this.getEventsSubscription.unsubscribe();
-    this.getCurrentUserSubscription.unsubscribe();
+    // this.getCurrentUserSubscription.unsubscribe();
   }
 
   viewDetails(data: number) {

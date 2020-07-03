@@ -10,7 +10,7 @@ export class EventService {
   private eventDoc: AngularFirestoreDocument<Event>;
   events: Observable<Event[]>;
   
-  private userAccount = new BehaviorSubject<UserAccount>({userName: '', password: ''});
+  userAccount = new BehaviorSubject<UserAccount>({userName: '', password: ''});
   currentUserAccount = this.userAccount.asObservable();
 
   constructor(private afs: AngularFirestore) {

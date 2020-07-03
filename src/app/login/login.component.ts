@@ -28,7 +28,7 @@ export class LoginComponent implements OnInit {
   }
 
   login(userAccount: UserAccount) {
-    // console.table(userAccount);
+    // console.log(userAccount);
     // console.table(this.currentUser);
     if (userAccount.userName === this.currentUser.userName && userAccount.password === this.currentUser.password) {
       this.router.navigate(['/events']);
