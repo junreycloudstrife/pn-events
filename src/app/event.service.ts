@@ -3,6 +3,7 @@ import { Event, UserAccount } from './data-models';
 import { AngularFirestoreCollection, AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { map } from 'rxjs/operators';
+// import { resolve } from 'dns';
 
 @Injectable()
 export class EventService {
@@ -27,6 +28,28 @@ export class EventService {
   getEvents() {
     return this.events;
   }
+
+  async getEvent(id:number): Promise<Event> {
+    let event: Event;
+    await this.eventsCollection.ref.where('id', '==', Number(id))
+    .get().then(querySnapshot => {
+      querySnapshot.forEach(doc => {
+        event = doc.data() as Event;
+      })
+    });
+    return event;
+  }
+
+  // getEvent(id:number) {
+  //   return new Promise(resolve => {
+  //     this.eventsCollection.ref.where('id', '==', Number(id))
+  //     .get().then(querySnapshot => {
+  //       querySnapshot.forEach(doc => {
+  //         resolve(doc.data())
+  //       })
+  //     })
+  //   }) 
+  // }
 
   addEvent(event: Event) {
     this.eventsCollection.ref.get().then(querySnapshot => {

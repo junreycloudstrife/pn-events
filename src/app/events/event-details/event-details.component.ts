@@ -1,5 +1,8 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { Event } from '../../data-models';
+import { Component, OnInit } from '@angular/core';
+import { Event, Participant } from '../../data-models';
+import { EventService } from 'src/app/event.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-event-details',
@@ -8,14 +11,26 @@ import { Event } from '../../data-models';
 })
 export class EventDetailsComponent implements OnInit {
 
-  @Input() eventInput: Event;
-  @Output() eventOutput = new EventEmitter<number>();
-  constructor() { }
+  event: Event;
+  getEventSubscription: Subscription;
 
-  ngOnInit(): void {
+  constructor(
+    private eventService: EventService,
+    private route: ActivatedRoute,
+    private router: Router
+  ) { }
+
+  ngOnInit() {
+    this.eventService.getEvent(this.route.snapshot.params.id)
+    .then(event => this.event = event as Event);
   }
 
-  viewDetails(data: number) {
-    this.eventOutput.emit(data);
+  addParticipant(participant: Participant) {
+    this.event.participants.push(participant);
+    this.eventService.updateEvent(this.event);
+  }
+
+  returnToList() {
+    this.router.navigate(['/events']);
   }
 }

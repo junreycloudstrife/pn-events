@@ -1,24 +1,42 @@
-<div class="jumbotron pointable">
-    <h2>{{eventInput.name}}</h2>
+<div *ngIf="event" class="jumbotron pointable">
+    <div class="col-sm-12">
+        <div class="row">
+            <div class="col-sm-8">
+                <h2>{{event?.name}}</h2>
+            </div>
+            <div class="col-sm-4">
+                <button type="button" class="btn btn-primary" style="float: right;" (click)="returnToList()">Return to Events List</button>
+            </div>
+        </div>
+    </div>
     <div class="col body-content">
         <div class="row">
-            <span><b>Category: </b>{{eventInput.category}}</span>
+            <span><b>Category: </b>{{event?.category}}</span>
         </div>
-        <div class="row" *ngIf="eventInput.speaker">
-            <span><b>Speaker: </b>{{eventInput.speaker}}</span>
+        <div class="row" *ngIf="event?.speaker">
+            <span><b>Speaker: </b>{{event?.speaker}}</span>
         </div>
-        <div class="row" *ngIf="eventInput.emcee">
-            <span><b>Emcee: </b>{{eventInput.emcee}}</span>
-        </div>
-        <div class="row">
-            <span><b>Time: </b>{{eventInput.time}}</span>
+        <div class="row" *ngIf="event?.emcee">
+            <span><b>Emcee: </b>{{event?.emcee}}</span>
         </div>
         <div class="row">
-            <span><b>Date: </b>{{eventInput.date}}</span>
+            <span><b>Time: </b>{{event?.time}}</span>
         </div>
         <div class="row">
-            <span><b>Description: </b>{{eventInput.description}}</span>      
+            <span><b>Date: </b>{{event?.date}}</span>
         </div>
-        <button class="btn btn-primary mt-5" type="submit" (click)="viewDetails(eventInput.id)">View Participants</button>
-    </div>  
-</div>  
+        <div class="row">
+            <span><b>Description: </b>{{event?.description}}</span>      
+        </div>
+    </div>
+    <div>
+        <app-participants-list 
+            [participants]="event?.participants"
+            (addParticipant)="addParticipant($event)"    
+        ></app-participants-list>
+    </div>
+
+</div>
+<div *ngIf="!event" class="jumbotron pointable">
+    <div class="spinner-border text-primary"></div>
+</div>

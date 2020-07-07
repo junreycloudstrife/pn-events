@@ -19,10 +19,6 @@ export class ParticipantsListComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  returnToList() {
-    this.backButton.emit();
-  }
-
   register(participant: Participant) {
     this.addParticipant.emit(participant);
     this.fullName = '';
